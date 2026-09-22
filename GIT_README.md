@@ -8,7 +8,7 @@ ssh-keygen -t ed25519 -C "your_email_address"
 ```
 Mostly confirm by pressing enter
 ```
-cat id_ed25519_nsc.pub
+cat id_ed25519.pub
 ```
 -> put this output to your github account (https://github.com/settings/keys)
 ```

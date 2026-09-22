@@ -121,6 +121,10 @@ lerobot-teleoperate \
     --display_data=true
 ```
 
+# Imitation Learning
+from: https://huggingface.co/settings/tokens
+
+
 # Troubleshooting
 Helpful troubleshooting tips:
 https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/troubleshooting.html

@@ -1,3 +1,6 @@
+#
+set performance mode
+
 # Network
 Wifi: PhysicalAI
 pw: given by tutor
@@ -28,3 +31,9 @@ ssh-keygen -t ed25519
 -over connected ethernet cable:
   - TODO
 
+# synchronize files between your laptop and jetson
+
+e.g.
+rsync -avz /home/YOUR_USER/YOURFOLDER_PATH ema-student@192.168.0.217:/home/ema-student/repos/cas_26_YOUR_NAME
+
+# copy files from jetson to your laptop or vice versa
