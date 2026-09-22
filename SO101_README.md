@@ -122,8 +122,43 @@ lerobot-teleoperate \
 ```
 
 # Imitation Learning
-from: https://huggingface.co/settings/tokens
+from: https://huggingface.co/docs/lerobot/en/il_robots?teleoperate_koch_camera=Command
 
+
+create access token to load your recorded dataset up to huggingface:
+https://huggingface.co/settings/tokens
+
+```
+export HUGGINGFACE_TOKEN=xxxxx
+```
+```
+hf auth login --token ${HUGGINGFACE_TOKEN} 
+```
+output e.g.
+token saved to /home/ema-student/.cache/huggingface/stored_tokens
+
+```
+HF_USER=$(NO_COLOR=1 hf auth whoami | awk -F': *' '/user:/ {print $2}')
+echo "$HF_USER"
+```
+
+```
+lerobot-record \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM0 \
+    --robot.id=my_awesome_follower_arm \
+    --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 1920, height: 1080, fps: 30}}" \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM1 \
+    --teleop.id=my_awesome_leader_arm \
+    --display_data=true \
+    --dataset.repo_id=${HF_USER}/record-test \
+    --dataset.num_episodes=5 \
+    --dataset.single_task="Grab the black cube" \
+    --dataset.streaming_encoding=true \
+    # --dataset.rgb_encoder.vcodec=auto \
+    --dataset.encoder_threads=2
+```
 
 # Troubleshooting
 Helpful troubleshooting tips:
