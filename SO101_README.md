@@ -6,16 +6,10 @@ https://huggingface.co/docs/lerobot/en/installation
 
 Create folder for your project e.g.:
 ```
-mkdir -p ~/repos/cas_26_YOUR_NAME
-cd ~/repos/cas_26_YOUR_NAME
+mkdir -p ~/repos/cas_26_YOUR_NAME/lerobot
+cd ~/repos/cas_26_YOUR_NAME/lerobot
 ```
 
-Clone the lerobot repository and navigate into the directory:
-
-```
-git clone https://github.com/huggingface/lerobot.git
-cd lerobot # e.g. ~/repos/cas_26_shll/lerobot
-```
 
 Install python env and source:
 ```
@@ -30,11 +24,9 @@ Additional packages needed:
 sudo apt install ffmpeg
 ```
 
-
-
-Install relevant packages from that repo:
+Install relevant packages
 ```
-uv pip install lerobot
+uv pip install lerobot[feetech,core_scripts]
 ```
 
 Maybe needed later:
@@ -46,11 +38,8 @@ uv pip install 'lerobot[viz]'
 ```
 
 
-# SO-101 specific installation
+# SO-101 - getting it to run
 https://huggingface.co/docs/lerobot/en/so101
-```
-uv pip install -e ".[feetech]"
-```
 
 ## Find ports of robot
 lerobot-find-port
