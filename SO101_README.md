@@ -41,6 +41,8 @@ uv pip install 'lerobot[viz]'
 # SO-101 - getting it to run
 https://huggingface.co/docs/lerobot/en/so101
 
+- connect your follower robot to your jetson
+
 ## Find ports of robot
 ```
 lerobot-find-port
@@ -58,10 +60,13 @@ The ports (`/dev/ttyACM*`) belong to the `dialout` group. Add yourself once:
 
 ```bash
 sudo usermod -aG dialout $USER
+newgrp dialout
 ```
 
 
-## Setup Motor ids and baudrate for leader and follower(maybe already done)
+## Setup Motor ids and baudrate for leader and follower 
+thus should be already done with the shipped arms. If however something fails do this step.
+
 ```
 lerobot-setup-motors \
     --robot.type=so101_follower \
@@ -69,26 +74,11 @@ lerobot-setup-motors \
 ```
 
 ## Calibrate both arms
-
-### follower
-lerobot-calibrate \
-    --robot.type=so101_follower 
-    --robot.port=/dev/tty.usbmodem58760431551 \ # <- The port of your robot
-    --robot.id=my_awesome_follower_arm # <- Give the robot a unique name
-### leader
-lerobot-calibrate \
-    --teleop.type=so101_leader \
-    --teleop.port=/dev/tty.usbmodem58760431551 \ # <- The port of your robot
-    --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
-
-
-
-Then **log out of the desktop session** (system menu → power icon → *Log Out*) or reboot.
-Locking the screen is not enough: new terminals keep the old groups until you log in
-again. To use it right away in one terminal only: `newgrp dialout`.
-
-Check: `groups` lists `dialout`. Without it you get `Permission denied: '/dev/ttyACM0'`.
-
+```
+# change the port if needed
+lerobot-calibrate --robot.type=so101_follower --robot.port=/dev/ttyACM1 --robot.id=lab_follower_01
+lerobot-calibrate --teleop.type=so101_leader  --teleop.port=/dev/ttyACM0 --teleop.id=lab_leader_01 
+```
 
 
 # Teleoperate
