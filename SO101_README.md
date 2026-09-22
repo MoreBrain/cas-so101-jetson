@@ -42,11 +42,15 @@ uv pip install 'lerobot[viz]'
 https://huggingface.co/docs/lerobot/en/so101
 
 ## Find ports of robot
+```
 lerobot-find-port
+```
 
 give access:
+```
 sudo chmod 666 /dev/ttyACM0
 sudo chmod 666 /dev/ttyACM1
+```
 
 ### Permission to use the USB ports
 
