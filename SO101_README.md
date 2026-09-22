@@ -90,7 +90,36 @@ Calibration saved to /home/ema-student/.cache/huggingface/lerobot/calibration/ro
 # Teleoperate
 from https://huggingface.co/docs/lerobot/en/il_robots
 
+```
+lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM0 \
+    --robot.id=my_awesome_follower_arm \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM1 \
+    --teleop.id=my_awesome_leader_arm
+```
 
+# add camera
+from: https://huggingface.co/docs/lerobot/en/cameras
+
+```
+lerobot-find-cameras opencv
+```
+
+
+teleoperate with camera:
+```
+lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM0 \
+    --robot.id=my_awesome_follower_arm \
+    --robot.cameras="{front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/ttyACM1 \
+    --teleop.id=my_awesome_leader_arm \
+    --display_data=true
+```
 
 # Troubleshooting
 Helpful troubleshooting tips:
