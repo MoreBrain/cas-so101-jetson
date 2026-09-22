@@ -6,8 +6,15 @@ https://huggingface.co/docs/lerobot/en/installation
 
 Create folder for your project e.g.:
 ```
-mkdir -p ~/repos/cas_26_YOUR_NAME/lerobot
-cd ~/repos/cas_26_YOUR_NAME/lerobot
+mkdir -p ~/repos/cas_26_YOUR_NAME
+cd ~/repos/cas_26_YOUR_NAME
+```
+
+Clone the lerobot repository and navigate into the directory:
+
+```
+git clone https://github.com/huggingface/lerobot.git
+cd lerobot # e.g. ~/repos/cas_26_shll/lerobot
 ```
 
 Install python env and source:
@@ -23,12 +30,7 @@ Additional packages needed:
 sudo apt install ffmpeg
 ```
 
-Clone the lerobot repository and navigate into the directory:
 
-```
-git clone https://github.com/huggingface/lerobot.git
-cd lerobot
-```
 
 Install relevant packages from that repo:
 ```
