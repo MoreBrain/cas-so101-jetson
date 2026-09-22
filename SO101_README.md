@@ -40,7 +40,7 @@ uv pip install 'lerobot[viz]'
 
 # SO-101 - getting it to run
 https://huggingface.co/docs/lerobot/en/so101
-
+- power the robot arm
 - connect your follower robot to your jetson
 
 ## Find ports of robot
@@ -70,15 +70,21 @@ thus should be already done with the shipped arms. If however something fails do
 ```
 lerobot-setup-motors \
     --robot.type=so101_follower \
-    --robot.port=/dev/tty.usbmodem585A0076841  # <- paste here the port found at previous step
+    --robot.port=/dev/ttyACM0  # <- paste here the port found at previous step
 ```
 
 ## Calibrate both arms
+see helping videos on https://huggingface.co/docs/lerobot/en/so101
 ```
 # change the port if needed
-lerobot-calibrate --robot.type=so101_follower --robot.port=/dev/ttyACM1 --robot.id=lab_follower_01
-lerobot-calibrate --teleop.type=so101_leader  --teleop.port=/dev/ttyACM0 --teleop.id=lab_leader_01 
+lerobot-calibrate --robot.type=so101_follower --robot.port=/dev/ttyACM0 --robot.id=my_awesome_follower_arm
+lerobot-calibrate --teleop.type=so101_leader  --teleop.port=/dev/ttyACM1 --teleop.id=my_awesome_leader_arm 
 ```
+successful output, e.g.:
+```
+Calibration saved to /home/ema-student/.cache/huggingface/lerobot/calibration/robots/so_follower/my_awesome_follower_arm.json
+```
+
 
 
 # Teleoperate
@@ -87,6 +93,10 @@ from https://huggingface.co/docs/lerobot/en/il_robots
 
 
 # Troubleshooting
+Helpful troubleshooting tips:
+https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/troubleshooting.html
+
+
 If you encounter build errors, you may need to install additional system dependencies: cmake, build-essential, and ffmpeg libs. To install these for Linux run:
 
 ```
