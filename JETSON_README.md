@@ -16,6 +16,7 @@ sudo apt update
 - git
 - docker
 - uv
+- claude?
 
 
 # create ssh-keys so you can login from other laptop without typing password each time

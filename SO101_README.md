@@ -142,12 +142,13 @@ HF_USER=$(NO_COLOR=1 hf auth whoami | awk -F': *' '/user:/ {print $2}')
 echo "$HF_USER"
 ```
 
+- Record simple dataset:
 ```
 lerobot-record \
     --robot.type=so101_follower \
     --robot.port=/dev/ttyACM0 \
     --robot.id=my_awesome_follower_arm \
-    --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 1920, height: 1080, fps: 30}}" \
+    --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
     --teleop.type=so101_leader \
     --teleop.port=/dev/ttyACM1 \
     --teleop.id=my_awesome_leader_arm \
@@ -156,9 +157,36 @@ lerobot-record \
     --dataset.num_episodes=5 \
     --dataset.single_task="Grab the black cube" \
     --dataset.streaming_encoding=true \
-    # --dataset.rgb_encoder.vcodec=auto \
     --dataset.encoder_threads=2
 ```
+
+- Replay one episode of dataset:
+```
+lerobot-replay \
+    --robot.type=so101_follower \
+    --robot.port=/dev/ttyACM0 \
+    --robot.id=my_awesome_follower_arm \
+    --dataset.repo_id=${HF_USER}/record-test_YOUR_SPECIFIC_FILE \ # find it under .cache/huggingface/lerobot/YOURACCOUNT/...
+    --dataset.episode=0 # choose the episode you want to replay
+```
+
+
+- Train a policy
+
+uv pip install 'lerobot[training]'
+
+```
+lerobot-train \
+  --dataset.repo_id=${HF_USER}/so101_test_YOURPATH \
+  --policy.type=act \
+  --output_dir=outputs/train/act_so101_test \
+  --job_name=act_so101_test \
+  --policy.device=cuda \
+  --wandb.enable=true \
+  --policy.repo_id=${HF_USER}/my_policy
+```
+
+
 
 # Troubleshooting
 Helpful troubleshooting tips:
